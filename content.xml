@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content id=""
+    name="Property Owned Expand/Collapse"
+    author="Chem O`Dun"
+    version="100"
+    date="2025-12-02"
+    save="false"
+    description="Property Owned Expand/Collapse mod by Chem O`Dun"
+    enabled="1">
+
+    <dependency id="kuerteeUIExtensionsAndHUD" optional="false" name="kuertee UI Extensions and HUD" version="760"></dependency>
+
+</content>
