@@ -1,33 +1,82 @@
+local ffi = require("ffi")
+local C = ffi.C
+
+ffi.cdef [[
+  typedef uint64_t UniverseID;
+
+	UniverseID GetPlayerID(void);
+]]
+
+local traceEnabled = false
+
 local expandCollapse = {
   mapMenu = nil,
-  traceEnabled = false
 }
 
-function expandCollapse:debug(message)
+local playerId = nil
+local customTabsBlackBoardDataName = "$customTabsData"
+
+function debug(message)
   local text = "ExpandCollapse: " .. message
   if type(DebugError) == "function" then
     DebugError(text)
   end
 end
 
-function expandCollapse:trace(message)
+function trace(message)
   ---@diagnostic disable-next-line: unnecessary-if
-  if self.traceEnabled then
-    self:debug(message)
+  if traceEnabled then
+    debug(message)
   end
 end
 
-function expandCollapse:isAnyExpanded()
-  self:debug("Checking if any sections are expanded")
+local function isInArray(value, array)
+  for i = 1, #array do
+    if tostring(array[i]) == value then
+      return true
+    end
+  end
+  return false
+end
+
+local function getCustomTabNumber(mode)
+  if string.len(mode) > 11 and string.sub(mode, 1, 11) == "custom_tab_" then
+    local tabNumberStr = string.sub(mode, 12)
+    local tabNumber = tonumber(tabNumberStr)
+    if tabNumber ~= nil then
+      return tabNumber
+    end
+  end
+  return 0
+end
+
+
+
+local function removeFromArrayWithId(value, array)
+  for i = #array, 1, -1 do
+    if array[i].id ~= nil and tostring(array[i].id) == value then
+      table.remove(array, i)
+    end
+  end
+end
+
+function expandCollapse:isAnyExpanded(mode, infoTableData)
+  debug("Checking if any sections are expanded")
   local menu = self.mapMenu
+  local data = nil
   ---@diagnostic disable-next-line: undefined-field
   if (menu ~= nil and type(menu.extendedproperty) == "table") then
     ---@diagnostic disable-next-line: undefined-field
     for key, _ in pairs(menu.extendedproperty) do
       if (key ~= nil and type(key) == "string" and string.len(key) > 0) then
         if string.sub(key, 1, 3) == "ID:" then
-          self:trace("Found expanded object: " .. key)
-          return true
+          if data == nil then
+            data = self:getTabData(mode, infoTableData) or {}
+          end
+          if isInArray(key, data) then
+            trace("Found expanded object: " .. key)
+            return true
+          end
         end
       end
     end
@@ -36,7 +85,7 @@ function expandCollapse:isAnyExpanded()
 end
 
 function expandCollapse:expandArray(array, infoTableData)
-  self:debug("Expanding array with " .. tostring(#array) .. " items")
+  debug("Expanding array with " .. tostring(#array) .. " items")
   local processed = 0
   ---@diagnostic disable-next-line: undefined-field
   if self.mapMenu ~= nil and self.mapMenu.extendedproperty ~= nil then
@@ -59,7 +108,7 @@ function expandCollapse:expandArray(array, infoTableData)
         end
         if subordinates.hasRendered and subordinateFound or (#dockedShips > 0) or (isStation and (#constructions > 0)) then
           self.mapMenu.extendedproperty[component] = true
-          self:trace("Expanding station ID: " .. tostring(component))
+          trace("Expanding station ID: " .. tostring(component))
           processed = processed + 1
         end
       end
@@ -68,52 +117,80 @@ function expandCollapse:expandArray(array, infoTableData)
   return processed
 end
 
+function expandCollapse:getTabData(mode, infoTableData)
+  debug("Getting tab data for mode: " .. tostring(mode))
+  local result = {}
+  local customTabNumber = getCustomTabNumber(mode)
+  local tabData = {}
+  if customTabNumber > 0 then
+    if playerId ~= nil then
+      local customTabsData = GetNPCBlackboard(playerId, customTabsBlackBoardDataName) or {}
+      if customTabNumber <= #customTabsData then
+        tabData = customTabsData[customTabNumber] or {}
+      end
+    end
+  end
+  if mode == "stations" or mode == "propertyall" or #tabData > 0 then
+    for i = 1, #infoTableData.stations do
+      local object = infoTableData.stations[i]
+      if #tabData == 0 or isInArray(tostring(object), tabData) then
+        result[#result + 1] = object
+      end
+    end
+  end
+  if mode == "fleets" or mode == "propertyall" or #tabData > 0 then
+    for i = 1, #infoTableData.fleetLeaderShips do
+      local object = infoTableData.fleetLeaderShips[i]
+      if #tabData == 0 or isInArray(tostring(object), tabData) then
+        result[#result + 1] = object
+      end
+    end
+  end
+  if mode == "unassignedships" or mode == "propertyall" or #tabData > 0 then
+    for i = 1, #infoTableData.unassignedShips do
+      local object = infoTableData.unassignedShips[i]
+      if #tabData == 0 or isInArray(tostring(object), tabData) then
+        result[#result + 1] = object
+      end
+    end
+  end
+  return result
+end
+
 function expandCollapse:process(isAnyExpanded, infoTableData)
-  self:debug("Expand All button clicked when isAnyExpanded is " .. tostring(isAnyExpanded))
+  debug("Expand All button clicked when isAnyExpanded is " .. tostring(isAnyExpanded))
   local processed = 0
   if self.mapMenu == nil then
-    self:debug("MapMenu is nil; cannot process")
+    debug("MapMenu is nil; cannot process")
     return
   end
   local menu = self.mapMenu
+  local data = self:getTabData(menu.propertyMode, infoTableData)
   if isAnyExpanded then
-    self:debug("Collapsing all sections")
-    -- Placeholder logic; replace with actual implementation
-    ---@diagnostic disable-next-line: undefined-field
+    debug("Collapsing all sections")
     if type(menu.extendedproperty) == "table" then
-      ---@diagnostic disable-next-line: undefined-field
-      for key, _ in pairs(menu.extendedproperty) do
-        if (key ~= nil and type(key) == "string" and string.len(key) > 0) then
-          if string.sub(key, 1, 3) == "ID:" then
-            self:trace("Collapsing object: " .. key)
-            ---@diagnostic disable-next-line: undefined-field
-            menu.extendedproperty[key] = nil
-            processed = processed + 1
+      for i = 1, #data do
+        local component = tostring(data[i])
+        if menu.extendedproperty[component] ~= nil then
+          menu.extendedproperty[component] = nil
+          if #menu.extendedmoduletypes > 0 then
+            removeFromArrayWithId(component, menu.extendedmoduletypes)
           end
+          if #menu.extendeddockedships > 0 then
+            removeFromArrayWithId(component, menu.extendeddockedships)
+          end
+          if #menu.extendedconstruction > 0 then
+            removeFromArrayWithId(component, menu.extendedconstruction)
+          end
+          processed = processed + 1
         end
       end
-      processed = processed + #menu.extendedmoduletypes
-      menu.extendedmoduletypes = {}
-      processed = processed + #menu.extendeddockedships
-      menu.extendeddockedships = {}
-      processed = processed + #menu.extendedconstruction
-      menu.extendedconstruction = {}
     end
-    self:debug("All sections collapsed")
-    ---@diagnostic disable-next-line: undefined-field
+    debug("All sections collapsed")
   elseif type(menu.propertyMode) == "string" then
-    ---@diagnostic disable-next-line: undefined-field
-    if (menu.propertyMode == "stations") or (menu.propertyMode == "propertyall") then
-      processed = processed + self:expandArray(infoTableData.stations or {}, infoTableData)
-    end
-    if (menu.propertyMode == "fleets") or (menu.propertyMode == "propertyall") then
-      processed = processed + self:expandArray(infoTableData.fleetLeaderShips or {}, infoTableData)
-    end
-    if (menu.propertyMode == "unassignedships") or (menu.propertyMode == "propertyall") then
-      processed = processed + self:expandArray(infoTableData.unassignedShips or {}, infoTableData)
-    end
+    processed = processed + self:expandArray(data, infoTableData)
   else
-    self:debug("MapMenu or propertyMode is invalid; cannot expand all")
+    debug("MapMenu or propertyMode is invalid; cannot expand all")
   end
   if type(menu.refreshInfoFrame) == "function" and processed > 0 then
     menu.refreshInfoFrame()
@@ -121,14 +198,20 @@ function expandCollapse:process(isAnyExpanded, infoTableData)
 end
 
 function expandCollapse:addButton(numdisplayed, instance, ftable, infoTableData)
-  self:debug("Adding Expand All button")
+  debug("Adding Expand All button")
   if self.mapMenu == nil then
-    self:debug("MapMenu is nil; cannot process")
+    debug("MapMenu is nil; cannot process")
     return
   end
   local menu = self.mapMenu
-  if menu.propertyMode == "propertyall" or menu.propertyMode == "stations" or menu.propertyMode == "fleets" or menu.propertyMode == "unassignedships" then
-    if numdisplayed > 0 and ftable ~= nil and ftable.rows ~= nil and type(ftable.rows[1]) == "table" then
+  local mode = menu.propertyMode
+  if type(mode) ~= "string" or string.len(mode) < 3 then
+    debug("Invalid propertyMode; cannot add button")
+    return
+  end
+  local isCustomTab = getCustomTabNumber(mode) > 0
+  if mode == "propertyall" or mode == "stations" or mode == "fleets" or mode == "unassignedships" or isCustomTab then
+    if (isCustomTab or numdisplayed > 0) and ftable ~= nil and ftable.rows ~= nil and type(ftable.rows[1]) == "table" then
       local headerRow = ftable.rows[1]
       if (headerRow[1] ~= nil and type(headerRow[1]) == "table") then
         local colSpan = headerRow[1].colspan - 1
@@ -139,7 +222,7 @@ function expandCollapse:addButton(numdisplayed, instance, ftable, infoTableData)
         headerRow.index = 1
         table.remove(ftable.rows, #ftable.rows)
         headerRow[2]:setColSpan(colSpan):createText(headerTitle, Helper.headerRowCenteredProperties)
-        local isAnyExpanded = self:isAnyExpanded()
+        local isAnyExpanded = self:isAnyExpanded(mode, infoTableData)
         headerRow[1]:createButton({ scaling = false }):setText(isAnyExpanded and "-" or "+", { scaling = true, halign = "center" })
         headerRow[1].handlers.onClick = function() self:process(isAnyExpanded, infoTableData) end
       end
@@ -154,16 +237,19 @@ local function bind(obj, methodName)
 end
 
 local function Init()
+  playerId = ConvertStringTo64Bit(tostring(C.GetPlayerID()))
+  debug("Initializing Expand/Collapse UI extension with PlayerID: " .. tostring(playerId))
   local menu = Helper.getMenu("MapMenu")
   ---@diagnostic disable-next-line: undefined-field
   if menu ~= nil and type(menu.registerCallback) == "function" then
     ---@diagnostic disable-next-line: undefined-field
     menu.registerCallback("createPropertyOwned_on_createPropertySection_unassignedships", bind(expandCollapse, "addButton"))
     expandCollapse.mapMenu = menu
-    expandCollapse:debug("Registered callback for Expand/Collapse button")
+    debug("Registered callback for Expand/Collapse button")
   else
-    expandCollapse:debug("Failed to get MapMenu or registerCallback is not a function")
+    debug("Failed to get MapMenu or registerCallback is not a function")
   end
 end
 
-Init()
+
+Register_OnLoad_Init(Init)
