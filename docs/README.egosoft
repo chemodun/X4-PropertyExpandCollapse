@@ -6,6 +6,7 @@ Small QoL mod which adds an Expand All / Collapse All button to the Property Own
 [list]
 [*] One button to expand or collapse all items in the Property Owned Information tab.
 [*] Works for four tabs: All, Stations, Fleets and Unassigned Ships.
+[*] From version 1.01 supports [url=https://www.nexusmods.com/x4foundations/mods/842]Custom Tabs[/url] mod by [url=https://www.nexusmods.com/x4foundations/users/7018859]Mycu[/url].
 [*] Make only first level expansion.
 [*] Collapse all levels of expanded items with one button.
 [*] Uses the same style as other expand/collapse buttons in the game.
@@ -21,6 +22,11 @@ Small QoL mod which adds an Expand All / Collapse All button to the Property Own
 [list]
 [*] It is available only via the Nexus Mods - [url=https://www.nexusmods.com/x4foundations/mods/552]UI Extensions and HUD[/url]
 [/list]
+[*] [b]Mod Support APIs[/b] by [url=https://next.nexusmods.com/profile/sirnukes?gameId=2659]SirNukes[/url] to be installed and enabled. Version [b]1.91[/b] and upper is required.
+[list]
+[*] It is available via Steam - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2042901274]SirNukes Mod Support APIs[/url]
+[*] Or via the Nexus Mods - [url=https://www.nexusmods.com/x4foundations/mods/503]Mod Support APIs[/url]
+[/list]
 [/list]
 [size=130][u]Installation[/u][/size]
 
@@ -32,9 +38,10 @@ Or you can do it via the Nexus Mods - [url=https://www.nexusmods.com/x4foundatio
 Simply press the button :-) on the level with the [b]Property Owned[/b] label in appropriate informational tab.
 
 [size=130][u]Video[/u][/size]
-
-[url=https://www.youtube.com/watch?v=SwiATdxiA1k]Video demonstration of the Property Owned Expand/Collapse. Version 1.00[/url]
-
+[list]
+[*] [url=https://www.youtube.com/watch?v=SwiATdxiA1k]Video demonstration of the Property Owned Expand/Collapse. Version 1.00[/url]
+[*] [url=https://www.youtube.com/watch?v=Z3KVzJA-q7E]Video demonstration of the Property Owned Expand/Collapse. Version 1.01. Support for Custom Tabs[/url]
+[/list]
 [size=130][u]Credits[/u][/size]
 [list]
 [*] Author: Chem O`Dun, on [url=https://next.nexusmods.com/profile/ChemODun/mods?gameId=2659]Nexus Mods[/url] and [url=https://steamcommunity.com/id/chemodun/myworkshopfiles/?appid=392160]Steam Workshop[/url]
@@ -43,12 +50,25 @@ Simply press the button :-) on the level with the [b]Property Owned[/b] label in
 [size=130][u]Acknowledgements[/u][/size]
 [list]
 [*] [url=https://www.egosoft.com]EGOSOFT[/url] — for the X series.
+[*] [url=https://next.nexusmods.com/profile/sirnukes?gameId=2659]SirNukes[/url] — for the Mod Support APIs that power the UI hooks.
 [*] [url=https://next.nexusmods.com/profile/Forleyor?gameId=2659]Forleyor[/url] — for his constant help with understanding the UI modding!
 [*] [url=https://next.nexusmods.com/profile/kuertee?gameId=2659]kuertee[/url] — for his exciting [b]UI Extensions and HUD[/b] that makes this extension possible.
 [*] [url=https://www.reddit.com/user/3punkt1415/]3punkt1415[/url] - for the idea of the mod itself.
 [/list]
 [size=130][u]Changelog[/u][/size]
 
+[size=125][u][1.01] - 2025-12-03[/u][/size]
+[list]
+[*] Fixed
+[list]
+[*] Wrong expand status and button icon in some cases.
+[*] Missed dependencies.
+[/list]
+[*] Added
+[list]
+[*] Added support for [b]Custom Tabs[/b] mod by [b]Mycu[/b]
+[/list]
+[/list]
 [size=125][u][1.00] - 2025-12-02[/u][/size]
 [list]
 [*] Added
