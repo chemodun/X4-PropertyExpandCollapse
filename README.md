@@ -42,7 +42,7 @@ Simply press the button :-) on the level with the `Property Owned` label in appr
 
 - [EGOSOFT](https://www.egosoft.com) — for the X series.
 - [Forleyor](https://next.nexusmods.com/profile/Forleyor?gameId=2659) — for his constant help with understanding the UI modding!
-- [Kuertee](https://next.nexusmods.com/profile/kuertee?gameId=2659) — for his exciting `Kuertee UI Extensions and HUD` that makes this extension possible.
+- [kuertee](https://next.nexusmods.com/profile/kuertee?gameId=2659) — for his exciting `UI Extensions and HUD` that makes this extension possible.
 - [3punkt1415](https://www.reddit.com/user/3punkt1415/) - for the idea of the mod itself.
 
 ## Changelog

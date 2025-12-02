@@ -1,13 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<content id=""
+<content
+    id="ws_3616522826"
     name="Property Owned Expand/Collapse"
     author="Chem O`Dun"
     version="100"
     date="2025-12-02"
     save="false"
-    description="Property Owned Expand/Collapse mod by Chem O`Dun"
-    enabled="1">
-
-    <dependency id="kuerteeUIExtensionsAndHUD" optional="false" name="kuertee UI Extensions and HUD" version="760"></dependency>
-
+    lastupdate="1764678254"
+    description="Small QoL mod which adds an Expand All / Collapse All button to the Property Owned Information tab.&#13;&#10;&#13;&#10;[h2][b]Limitations[/b][/h2]&#13;&#10;[list]&#13;&#10;[*] [b]Strictly depend[/b] on the [b]UI Extensions and HUD[/b] mod by [b]kuertee[/b] to be installed and enabled.&#13;&#10;[/list]&#13;&#10;&#13;&#10;[h2][b]Features[/b][/h2]&#13;&#10;[list]&#13;&#10;[*] One button to expand or collapse all items in the Property Owned Information tab.&#13;&#10;[*] Works for four tabs: All, Stations, Fleets and Unassigned Ships.&#13;&#10;[*] Make only first level expansion.&#13;&#10;[*] Collapse all levels of expanded items with one button.&#13;&#10;[*] Uses the same style as other expand/collapse buttons in the game.&#13;&#10;[/list]&#13;&#10;&#13;&#10;[h2][b]Requirements[/b][/h2]&#13;&#10;[list]&#13;&#10;[*] [b]X4: Foundations[/b] 7.60 or newer (tested on 7.60 and 8.00).&#13;&#10;[*] [b]UI Extensions and HUD[/b] by [url=https://next.nexusmods.com/profile/kuertee?gameId=2659]kuertee[/url] to be installed and enabled. Version [b]7.60[/b] and upper is required.&#13;&#10;[list]&#13;&#10;[*] It is available only via the Nexus Mods - [url=https://www.nexusmods.com/x4foundations/mods/552]UI Extensions and HUD[/url]&#13;&#10;[/list]&#13;&#10;[/list]&#13;&#10;[h2][b]Installation[/b][/h2]&#13;&#10;&#13;&#10;You can download the latest version via Steam client - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3616522826]Property Owned Expand/Collapse[/url]&#13;&#10;Or you can do it via the Nexus Mods - [url=https://www.nexusmods.com/x4foundations/mods/1898]Property Owned Expand/Collapse[/url]&#13;&#10;&#13;&#10;[h2][b]Usage[/b][/h2]&#13;&#10;&#13;&#10;Simply press the button :-) on the level with the [b]Property Owned[/b] label in appropriate informational tab.&#13;&#10;&#13;&#10;[h2][b]Video[/b][/h2]&#13;&#10;&#13;&#10;Video demonstration of the Property Owned Expand/Collapse. Version 1.00&#13;&#10;[previewyoutube=SwiATdxiA1k;full][/previewyoutube]&#13;&#10;&#13;&#10;[h2][b]Credits[/b][/h2]&#13;&#10;[list]&#13;&#10;[*] Author: Chem O`Dun, on [url=https://next.nexusmods.com/profile/ChemODun/mods?gameId=2659]Nexus Mods[/url] and [url=https://steamcommunity.com/id/chemodun/myworkshopfiles/?appid=392160]Steam Workshop[/url]&#13;&#10;[*] [i]&quot;X4: Foundations&quot;[/i] is a trademark of [url=https://www.egosoft.com]Egosoft[/url].&#13;&#10;[/list]&#13;&#10;[h2][b]Acknowledgements[/b][/h2]&#13;&#10;[list]&#13;&#10;[*] [url=https://www.egosoft.com]EGOSOFT[/url] — for the X series.&#13;&#10;[*] [url=https://next.nexusmods.com/profile/Forleyor?gameId=2659]Forleyor[/url] — for his constant help with understanding the UI modding!&#13;&#10;[*] [url=https://next.nexusmods.com/profile/kuertee?gameId=2659]Kuertee[/url] — for his exciting [b]Kuertee UI Extensions and HUD[/b] that makes this extension possible.&#13;&#10;[*] [url=https://www.reddit.com/user/3punkt1415/]3punkt1415[/url] - for the idea of the mod itself.&#13;&#10;[/list]&#13;&#10;[h2][b]Changelog[/b][/h2]&#13;&#10;&#13;&#10;[h2][1.00] - 2025-12-02[/h2]&#13;&#10;[list]&#13;&#10;[*] Added&#13;&#10;[list]&#13;&#10;[*] Initial public version&#13;&#10;[/list]&#13;&#10;[/list]">
+    <text language="7"
+        description="Small QoL mod which adds an Expand All / Collapse All button to the Property Owned Information tab.&#10;&#10;Depend on the 'UI Extensions and HUD' mod by `kuertee` to be installed and enabled"></text>
+    <!-- French -->
+    <text language="33"
+        description="Petit mod QoL qui ajoute un bouton Tout développer / Tout réduire à l'onglet Informations sur les biens possédés.&#10;&#10;Nécessite l'installation et l'activation du mod 'UI Extensions and HUD' de `kuertee`."></text>
+    <!-- Spanish -->
+    <text language="34"
+        description="Pequeño mod QoL que añade un botón Expandir todo / Contraer todo a la pestaña Información de Propiedades Poseídas.&#10;&#10;Depende de que el mod 'UI Extensions and HUD' de `kuertee` esté instalado y habilitado."></text>
+    <!-- Italian -->
+    <text language="39"
+        description="Piccolo mod QoL che aggiunge un pulsante Espandi tutto / Comprimi tutto alla scheda Informazioni sulle Proprietà Possedute.&#10;&#10;Richiede che il mod 'UI Extensions and HUD' di `kuertee` sia installato e abilitato."></text>
+    <!-- Czech -->
+    <text language="42"
+        description="Malý QoL mod, který přidává tlačítko Rozbalit vše / Sbalit vše na kartu Informace o vlastněném majetku.&#10;&#10;Vyžaduje nainstalovaný a povolený mod 'UI Extensions and HUD' od `kuertee`."></text>
+    <!-- English -->
+    <text language="44"
+        description="Small QoL mod which adds an Expand All / Collapse All button to the Property Owned Information tab.&#10;&#10;Depend on the 'UI Extensions and HUD' mod by `kuertee` to be installed and enabled"></text>
+    <!-- Polish -->
+    <text language="48"
+        description="Mały mod QoL, który dodaje przycisk Rozwiń wszystko / Zwiń wszystko do zakładki Informacje o posiadanych obiektach.&#10;&#10;Wymaga zainstalowanego i włączonego modu 'UI Extensions and HUD' autorstwa `kuertee`."></text>
+    <!-- German -->
+    <text language="49"
+        description="Kleines QoL-Mod, das der Registerkarte Besitzinformationen eine Schaltfläche Alle ausklappen / Alle einklappen hinzufügt.&#10;&#10;Benötigt das von `kuertee` stammende Mod 'UI Extensions and HUD' in installierter und aktivierter Form."></text>
+    <!-- Portuguese -->
+    <text language="55"
+        description="Pequeno mod QoL que adiciona um botão Expandir Tudo / Recolher Tudo à guia Informações de Propriedades Possuídas.&#10;&#10;Depende de o mod 'UI Extensions and HUD' de `kuertee` estar instalado e habilitado."></text>
+    <!-- Japanese -->
+    <text language="81" description="所有資産情報タブに「すべて展開 / すべて折りたたむ」ボタンを追加する小さなQoLモッドです。「UI Extensions and HUD」モッド（作成者 `kuertee`）がインストールされ有効化されている必要があります。"></text>
+    <!-- Korean -->
+    <text language="82" description="소유 자산 정보 탭에 '모두 펼치기 / 모두 접기' 버튼을 추가하는 작은 QoL 모드입니다. `kuertee`의 'UI Extensions and HUD' 모드가 설치되어 활성화되어 있어야 합니다."></text>
+    <!-- Chinese -->
+    <text language="86" description="为“拥有资产信息”选项卡添加“全部展开 / 全部折叠”按钮的小型QoL模组。需要安装并启用由 `kuertee` 制作的“UI Extensions and HUD”模组。"></text>
+    <!-- Bengali -->
+    <text language="88"
+        description="প্রপার্টি ওউন্ড ইনফরমেশন ট্যাবে সব প্রসারিত / সব সঙ্কুচিত বোতাম যোগ করে এমন ছোট QoL মড। `kuertee`-এর 'UI Extensions and HUD' মডটি ইনস্টল ও সক্রিয় থাকতে হবে।"></text>
+    <!-- Turkish -->
+    <text language="90"
+        description="Mülkiyet Bilgisi sekmesine Tümünü Genişlet / Tümünü Daralt düğmesi ekleyen küçük bir QoL modu.&#10;&#10;`kuertee` tarafından geliştirilen 'UI Extensions and HUD' modunun kurulu ve etkin olması gerekir."></text>
+    <!-- Ukrainian -->
+    <text language="380"
+        description="Невеликий QoL-мод, що додає кнопку «Розгорнути все / Згорнути все» на вкладку «Інформація про власність».&#10;&#10;Потрібно, щоб мод 'UI Extensions and HUD' від `kuertee` був встановлений і увімкнений."></text>
+    <dependency version="760"></dependency>
+    <dependency id="ws_2042901274" optional="false" name="SirNukes Mod Support APIs" version="193"></dependency>
 </content>
