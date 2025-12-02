@@ -50,7 +50,8 @@ function expandCollapse:expandArray(array, infoTableData)
         local dockedShips = infoTableData.dockedships[component] or {}
         local constructions = infoTableData.constructions[component] or {}
         local subordinateFound = false
-        for _, subordinate in ipairs(subordinates) do
+        for i = 1, #subordinates do
+          local subordinate = subordinates[i]
           if (subordinate.component and (infoTableData.fleetUnitSubordinates[tostring(subordinate.component)] ~= true)) or subordinate.fleetunit then
             subordinateFound = true
             break
