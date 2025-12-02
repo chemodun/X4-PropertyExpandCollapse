@@ -53,7 +53,7 @@ Simply press the button :-) on the level with the `Property Owned` label in appr
 
 ## Changelog
 
-### [1.01] - 2025-12-02
+### [1.01] - 2025-12-03
 
 - Fixed
   - Wrong expand status and button icon in some cases.
