@@ -1,0 +1,58 @@
+[size=140][u]Property Owned Expand/Collapse[/u][/size]
+
+Small QoL mod which adds an Expand All / Collapse All button to the Property Owned Information tab.
+
+[size=130][u]Features[/u][/size]
+[list]
+[*] One button to expand or collapse all items in the Property Owned Information tab.
+[*] Works for four tabs: All, Stations, Fleets and Unassigned Ships.
+[*] Make only first level expansion.
+[*] Collapse all levels of expanded items with one button.
+[*] Uses the same style as other expand/collapse buttons in the game.
+[/list]
+[size=130][u]Limitations[/u][/size]
+[list]
+[*] Depend on the [b]kuertee UI Extensions and HUD[/b] mod to be installed and enabled.
+[/list]
+[size=130][u]Requirements[/u][/size]
+[list]
+[*] [b]X4: Foundations[/b] 7.60 or newer (tested on 7.60 and 8.00).
+[*] [b]Kuertee UI Extensions and HUD[/b] by [url=https://next.nexusmods.com/profile/kuertee?gameId=2659]Kuertee[/url] to be installed and enabled. Version [b]7.60[/b] and upper is required.
+[list]
+[*] It is available only via the Nexus Mods - [url=https://www.nexusmods.com/x4foundations/mods/552]UI Extensions and HUD[/url]
+[/list]
+[/list]
+[size=130][u]Installation[/u][/size]
+
+You can download the latest version via Steam client - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=]Property Owned Expand/Collapse[/url]
+Or you can do it via the Nexus Mods - [url=https://www.nexusmods.com/x4foundations/mods/1898]Property Owned Expand/Collapse[/url]
+
+[size=130][u]Usage[/u][/size]
+
+Simply press the button :-) on the level with the [b]Property Owned[/b] label in appropriate informational tab.
+
+[size=130][u]Video[/u][/size]
+
+[url=https://www.youtube.com/watch?v=SwiATdxiA1k]Video demonstration of the Property Owned Expand/Collapse. Version 1.00[/url]
+
+[size=130][u]Credits[/u][/size]
+[list]
+[*] Author: Chem O`Dun, on [url=https://next.nexusmods.com/profile/ChemODun/mods?gameId=2659]Nexus Mods[/url] and [url=https://steamcommunity.com/id/chemodun/myworkshopfiles/?appid=392160]Steam Workshop[/url]
+[*] [i]"X4: Foundations"[/i] is a trademark of [url=https://www.egosoft.com]Egosoft[/url].
+[/list]
+[size=130][u]Acknowledgements[/u][/size]
+[list]
+[*] [url=https://www.egosoft.com]EGOSOFT[/url] — for the X series.
+[*] [url=https://next.nexusmods.com/profile/Forleyor?gameId=2659]Forleyor[/url] — for his constant help with understanding the UI modding!
+[*] [url=https://next.nexusmods.com/profile/kuertee?gameId=2659]Kuertee[/url] — for his hilarious [b]Kuertee UI Extensions and HUD[/b] that makes this extension possible.
+[*] [url=https://www.reddit.com/user/3punkt1415/]3punkt1415[/url] - for the idea of the mod itself.
+[/list]
+[size=130][u]Changelog[/u][/size]
+
+[size=125][u][1.00] - 2025-12-02[/u][/size]
+[list]
+[*] Added
+[list]
+[*] Initial public version
+[/list]
+[/list]
