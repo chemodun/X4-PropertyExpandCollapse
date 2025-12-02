@@ -12,12 +12,12 @@ Small QoL mod which adds an Expand All / Collapse All button to the Property Own
 
 ## Limitations
 
-- Depend on the `kuertee UI Extensions and HUD` mod to be installed and enabled.
+- Depend on the `UI Extensions and HUD` mod by `kuertee` to be installed and enabled.
 
 ## Requirements
 
 - `X4: Foundations` 7.60 or newer (tested on 7.60 and 8.00).
-- `Kuertee UI Extensions and HUD` by [Kuertee](https://next.nexusmods.com/profile/kuertee?gameId=2659) to be installed and enabled. Version `7.60` and upper is required.
+- `UI Extensions and HUD` by [kuertee](https://next.nexusmods.com/profile/kuertee?gameId=2659) to be installed and enabled. Version `7.60` and upper is required.
   - It is available only via the Nexus Mods - [UI Extensions and HUD](https://www.nexusmods.com/x4foundations/mods/552)
 
 ## Installation
