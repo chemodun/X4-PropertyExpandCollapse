@@ -22,7 +22,7 @@ Small QoL mod which adds an Expand All / Collapse All button to the Property Own
 
 ## Installation
 
-You can download the latest version via Steam client - [Property Owned Expand/Collapse](https://steamcommunity.com/sharedfiles/filedetails/?id=)
+You can download the latest version via Steam client - [Property Owned Expand/Collapse](https://steamcommunity.com/sharedfiles/filedetails/?id=3616522826)
 Or you can do it via the Nexus Mods - [Property Owned Expand/Collapse](https://www.nexusmods.com/x4foundations/mods/1898)
 
 ## Usage
