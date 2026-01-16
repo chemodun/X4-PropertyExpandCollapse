@@ -3,5 +3,6 @@
   <environment type="menus">
     <file name="ui/property_expand_collapse.lua" />
     <dependency name="kuertee_ui_extensions" />
+    <dependency name="sn_mod_support_apis" />
   </environment>
 </addon>

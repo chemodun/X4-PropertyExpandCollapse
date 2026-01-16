@@ -53,6 +53,11 @@ Simply press the button :-) on the level with the `Property Owned` label in appr
 
 ## Changelog
 
+### [1.02] - 2026-01-16
+
+- Fixed
+  - Missed UI dependency `Mod Support APIs`
+
 ### [1.01] - 2025-12-03
 
 - Fixed
