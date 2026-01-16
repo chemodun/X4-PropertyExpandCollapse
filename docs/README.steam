@@ -59,6 +59,13 @@ Simply press the button :-) on the level with the [b]Property Owned[/b] label in
 [/list]
 [h2][b]Changelog[/b][/h2]
 
+[h2][1.02] - 2026-01-16[/h2]
+[list]
+[*] Fixed
+[list]
+[*] Missed UI dependency [b]Mod Support APIs[/b]
+[/list]
+[/list]
 [h2][1.01] - 2025-12-03[/h2]
 [list]
 [*] Fixed
