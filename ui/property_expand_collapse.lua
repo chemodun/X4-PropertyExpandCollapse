@@ -5,12 +5,20 @@ ffi.cdef [[
   typedef uint64_t UniverseID;
 
 	UniverseID GetPlayerID(void);
+
+  typedef struct {
+    int major;
+    int minor;
+  } GameVersion;
+
+  GameVersion GetGameVersion();
 ]]
 
 local traceEnabled = false
 
 local expandCollapse = {
   mapMenu = nil,
+  gameVersion = C.GetGameVersion(),
 }
 
 local playerId = nil
@@ -197,7 +205,7 @@ function expandCollapse:process(isAnyExpanded, infoTableData)
   end
 end
 
-function expandCollapse:addButton(numdisplayed, instance, ftable, infoTableData)
+function expandCollapse:addButton(numdisplayed, instance, currentTable, infoTableData)
   debug("Adding Expand All button")
   if self.mapMenu == nil then
     debug("MapMenu is nil; cannot process")
@@ -211,19 +219,44 @@ function expandCollapse:addButton(numdisplayed, instance, ftable, infoTableData)
   end
   local isCustomTab = getCustomTabNumber(mode) > 0
   if mode == "propertyall" or mode == "stations" or mode == "fleets" or mode == "unassignedships" or isCustomTab then
-    if (isCustomTab or numdisplayed > 0) and ftable ~= nil and ftable.rows ~= nil and type(ftable.rows[1]) == "table" then
-      local headerRow = ftable.rows[1]
+    if (isCustomTab or numdisplayed > 0) and currentTable ~= nil and currentTable.rows ~= nil and type(currentTable.rows[1]) == "table" then
+      local headerRowIndex = 1
+      if self.gameVersion.major == 9 then
+        for i = 2, #currentTable.rows do
+          if currentTable.rows[i].rowdata == nil or currentTable.rows[i].rowdata == nil then
+            headerRowIndex = i
+            break
+          end
+        end
+        if headerRowIndex ~= 1 and headerRowIndex < #currentTable.rows then
+          debug("Found sub-title row at index: " .. tostring(headerRowIndex))
+          headerRowIndex = headerRowIndex + 1
+        else
+          debug("Header row not found; exiting without adding button")
+          return
+        end
+      end
+      local headerRow = currentTable.rows[headerRowIndex]
+      local headerRowProperties = headerRow.properties or {}
+      local headerRowHeight = headerRow:getHeight()
       if (headerRow[1] ~= nil and type(headerRow[1]) == "table") then
-        local colSpan = headerRow[1].colspan - 1
-        local headerTitle = headerRow[1] and headerRow[1].properties and headerRow[1].properties.text or ReadText(1001, 1000)
-        local row = ftable:addRow(true, { fixed = true, bgColor = Color["row_title_background"] })
-        ftable.rows[1] = row
-        headerRow = ftable.rows[1]
-        headerRow.index = 1
-        table.remove(ftable.rows, #ftable.rows)
-        headerRow[2]:setColSpan(colSpan):createText(headerTitle, Helper.headerRowCenteredProperties)
+        local colSpan = (headerRow[1].colspan == currentTable.numcolumns) and (headerRow[1].colspan - 1) or headerRow[1].colspan
+        local cellProperties = headerRow[1].properties or {}
+        local headerTitle = cellProperties and cellProperties.text or ""
+        local row = currentTable:addRow(true, headerRowProperties)
+        currentTable.rows[headerRowIndex] = row
+        headerRow = currentTable.rows[headerRowIndex]
+        headerRow.index = headerRowIndex
+        table.remove(currentTable.rows, #currentTable.rows)
+        headerRow[2]:setColSpan(colSpan):createText(headerTitle, cellProperties)
         local isAnyExpanded = self:isAnyExpanded(mode, infoTableData)
-        headerRow[1]:createButton({ scaling = false }):setText(isAnyExpanded and "-" or "+", { scaling = true, halign = "center" })
+        local buttonProperties = { scaling = false }
+        if self.gameVersion.major == 9 then
+          buttonProperties.height = headerRowHeight
+          buttonProperties.affectRowHeight = false
+          buttonProperties.x = Helper.standardContainerOffset
+        end
+        headerRow[1]:createButton(buttonProperties):setText(isAnyExpanded and "-" or "+", { scaling = true, halign = "center" })
         headerRow[1].handlers.onClick = function() self:process(isAnyExpanded, infoTableData) end
       end
     end
@@ -237,13 +270,22 @@ local function bind(obj, methodName)
 end
 
 local function Init()
+  if expandCollapse.gameVersion.major ~= 8 and false then
+    debug("Unsupported game version: " .. tostring(expandCollapse.gameVersion.major) .. "." .. tostring(expandCollapse.gameVersion.minor) .. ". Expand/Collapse UI extension will not be initialized.")
+    return
+  end
   playerId = ConvertStringTo64Bit(tostring(C.GetPlayerID()))
   debug("Initializing Expand/Collapse UI extension with PlayerID: " .. tostring(playerId))
   local menu = Helper.getMenu("MapMenu")
   ---@diagnostic disable-next-line: undefined-field
   if menu ~= nil and type(menu.registerCallback) == "function" then
     ---@diagnostic disable-next-line: undefined-field
-    menu.registerCallback("createPropertyOwned_on_createPropertySection_unassignedships", bind(expandCollapse, "addButton"))
+    if expandCollapse.gameVersion.major == 8 then
+      menu.registerCallback("createPropertyOwned_on_createPropertySection_unassignedships", bind(expandCollapse, "addButton"))
+    elseif expandCollapse.gameVersion.major == 9 then
+      menu.registerCallback("createPropertyOwned_on_tabtable_end", bind(expandCollapse, "addButton"))
+    end
+
     expandCollapse.mapMenu = menu
     debug("Registered callback for Expand/Collapse button")
   else
