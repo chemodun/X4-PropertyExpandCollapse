@@ -11,14 +11,10 @@ Small QoL mod which adds an Expand All / Collapse All button to the Property Own
 - Collapse all levels of expanded items with one button.
 - Uses the same style as other expand/collapse buttons in the game.
 
-## Limitations
-
-- Depend on the `UI Extensions and HUD` mod by `kuertee` to be installed and enabled.
-
 ## Requirements
 
-- `X4: Foundations` 7.60 or newer (tested on 7.60 and 8.00).
-- `UI Extensions and HUD` by [kuertee](https://next.nexusmods.com/profile/kuertee?gameId=2659) to be installed and enabled. Version `7.60` and upper is required.
+- `X4: Foundations` 7.60 or newer (tested on 7.60, 8.00 and 9.00 beta).
+- `UI Extensions and HUD` by [kuertee](https://next.nexusmods.com/profile/kuertee?gameId=2659) to be installed and enabled. Version `7.60` and upper is required. **Always use the latest version available for your game version.**
   - It is available only via the Nexus Mods - [UI Extensions and HUD](https://www.nexusmods.com/x4foundations/mods/552)
 - `Mod Support APIs` by [SirNukes](https://next.nexusmods.com/profile/sirnukes?gameId=2659) to be installed and enabled. Version `1.91` and upper is required.
   - It is available via Steam - [SirNukes Mod Support APIs](https://steamcommunity.com/sharedfiles/filedetails/?id=2042901274)
@@ -52,6 +48,11 @@ Simply press the button :-) on the level with the `Property Owned` label in appr
 - [3punkt1415](https://www.reddit.com/user/3punkt1415/) - for the idea of the mod itself.
 
 ## Changelog
+
+### [1.03] - 2026-05-03
+
+- Improved
+  - Added support for game version 9.00 (at least for beta).
 
 ### [1.02] - 2026-01-16
 

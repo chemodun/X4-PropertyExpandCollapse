@@ -19,6 +19,7 @@ local traceEnabled = false
 local expandCollapse = {
   mapMenu = nil,
   gameVersion = C.GetGameVersion(),
+  sortByText = ""
 }
 
 local playerId = nil
@@ -224,13 +225,15 @@ function expandCollapse:addButton(numdisplayed, instance, currentTable, infoTabl
       if self.gameVersion.major == 9 then
         for i = 2, #currentTable.rows do
           if currentTable.rows[i].rowdata == nil or currentTable.rows[i].rowdata == nil then
-            headerRowIndex = i
-            break
+            local cell = currentTable.rows[i][1]
+            if cell ~= nil and cell.type == "text" and cell.properties.text == expandCollapse.sortByText then
+              headerRowIndex = i
+              break
+            end
           end
         end
         if headerRowIndex ~= 1 and headerRowIndex < #currentTable.rows then
           debug("Found sub-title row at index: " .. tostring(headerRowIndex))
-          headerRowIndex = headerRowIndex + 1
         else
           debug("Header row not found; exiting without adding button")
           return
@@ -287,6 +290,7 @@ local function Init()
     end
 
     expandCollapse.mapMenu = menu
+    expandCollapse.sortByText = (ReadText(1001, 2906) .. ReadText(1001, 120)) or ""
     debug("Registered callback for Expand/Collapse button")
   else
     debug("Failed to get MapMenu or registerCallback is not a function")
